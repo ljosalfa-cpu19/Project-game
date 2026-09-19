@@ -1,0 +1,42 @@
+:root{--midnight:#101525;--lavender:#403A5C;--rose:#B86F7C;--cream:#F6EBDD;--gold:#E7C98B;--sage:#7F967B;--ocean:#587A8C;--wood:#806452}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--midnight);color:var(--cream);font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif}
+canvas{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelated;touch-action:none}
+#title,#help,#cine,#panel,#fade,#flash{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
+#title{z-index:30;justify-content:space-between;padding:15vh 24px 13vh;transition:opacity 1.2s}
+#title.off{opacity:0;pointer-events:none}
+h1,h2{font-weight:400;letter-spacing:.28em;margin:0 0 14px;text-shadow:0 0 24px rgba(231,201,139,.35)}
+h1{font-size:clamp(16px,3.2vw,30px)}h2{font-size:18px}
+#title p{opacity:.6;letter-spacing:.2em;font-size:13px;font-style:italic;margin:0}
+button{font:inherit;font-size:14px;letter-spacing:.3em;color:var(--gold);background:rgba(16,21,37,.65);border:1px solid var(--gold);padding:14px 34px;border-radius:2px;cursor:pointer;transition:.3s}
+button:hover{background:var(--gold);color:var(--midnight);box-shadow:0 0 28px rgba(231,201,139,.5)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+#help,#cine,#toast,#loc,#dlg,#panel,#flash{opacity:0;pointer-events:none;transition:opacity .7s}
+#help{z-index:31;white-space:pre-line;letter-spacing:.25em;line-height:2.4;font-size:14px}
+#cine{z-index:70;white-space:pre-line;font-size:clamp(18px,3.6vw,36px);letter-spacing:.14em;line-height:1.7}
+#flash{z-index:80;background:var(--cream);transition:opacity .15s}
+#fade{z-index:60;background:#000;opacity:0;pointer-events:none}
+.on{opacity:1!important}
+#dlg.on,#panel.on{pointer-events:auto}
+#dlg{position:fixed;z-index:35;left:50%;bottom:7vh;transform:translateX(-50%);width:min(660px,92vw);padding:18px 24px;background:rgba(16,21,37,.9);border:1px solid rgba(231,201,139,.55);border-radius:10px;white-space:pre-line;line-height:1.7;font-size:16px;box-shadow:0 0 30px rgba(231,201,139,.12);cursor:pointer}
+#dlg::after{content:"▾";position:absolute;right:14px;bottom:6px;color:var(--gold);font-size:12px}
+#panel{z-index:50;background:rgba(16,21,37,.86);line-height:1.8;font-size:16px}
+#panel canvas{position:static;width:180px;height:230px;image-rendering:auto;margin-bottom:18px;box-shadow:0 0 40px rgba(231,201,139,.25)}
+.row{display:flex;gap:8px;width:min(440px,88vw);padding:7px 0;cursor:pointer;letter-spacing:.1em;font-size:14px}
+.row:hover{color:var(--gold)}.row i{flex:1;border-bottom:1px dotted rgba(246,235,221,.4);margin-bottom:6px}
+#mr{min-height:2em;color:var(--gold);font-style:italic}
+input{font:inherit;font-size:18px;width:min(440px,86vw);padding:12px;margin:16px 0 22px;background:transparent;border:0;border-bottom:1px solid var(--gold);color:var(--cream);text-align:center;outline:0;user-select:text}
+#hud{position:fixed;z-index:20;top:14px;left:16px;font-size:13px;letter-spacing:.15em;color:var(--gold);opacity:.85}
+#hud b{cursor:pointer;margin-left:10px;opacity:.5;font-weight:400}
+#loc{position:fixed;z-index:20;top:14vh;left:0;right:0;text-align:center;letter-spacing:.5em;font-size:13px;color:var(--cream)}
+#toast{position:fixed;z-index:36;top:22vh;left:0;right:0;text-align:center;white-space:pre-line;font-size:clamp(18px,3vw,28px);letter-spacing:.2em;color:var(--gold);text-shadow:0 0 22px rgba(231,201,139,.6)}
+#go{position:fixed;z-index:40;left:50%;bottom:9vh;transform:translateX(-50%);opacity:0;pointer-events:none}
+#go.on{pointer-events:auto}
+#joy,#act{position:fixed;z-index:25;display:none;touch-action:none}
+#joy{left:22px;bottom:26px;width:118px;height:118px;border-radius:50%;border:1px solid rgba(231,201,139,.35);background:rgba(246,235,221,.05)}
+#joy i{position:absolute;left:39px;top:39px;width:40px;height:40px;border-radius:50%;background:rgba(231,201,139,.45)}
+#act{right:26px;bottom:40px;width:72px;height:72px;padding:0;border-radius:50%;letter-spacing:0;font-size:22px;background:rgba(231,201,139,.15)}
+body.touch #joy,body.touch #act{display:block}
+body.touch #dlg{bottom:auto;top:9vh}
+body.nohud #hud,body.nohud #joy,body.nohud #act,body.nohud #loc{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important}}
