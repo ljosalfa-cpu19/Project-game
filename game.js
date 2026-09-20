@@ -14,7 +14,7 @@ const WL='#6D5662',CW='#3A2E2C';
 /* ================= STATE / SAVE SYSTEM ================= */
 const KEY='wwhly_save_v1';let noSave=0;
 if(/reset/.test(location.search)){localStorage.removeItem(KEY);history.replaceState(0,'',location.pathname)}
-const S={tk:[],coin:0,wish:'',bottle:'',fl:[],keys:[],gate:0,door:0,stars:[],vis:[],c:{},time:0,done:0,build:'',tv:0,x:1200,y:1380};
+const S={ms:0,tk:[],coin:0,wish:'',bottle:'',fl:[],keys:[],gate:0,door:0,stars:[],vis:[],c:{},time:0,done:0,build:'',tv:0,x:1200,y:1380};
 try{localStorage.removeItem(KEY)}catch(e){} // progress is never restored: every visit starts fresh
 const save=()=>{}; // intentionally empty: flowers, keys, stars etc. are NOT saved
 const $=i=>document.getElementById(i),cv=$('c');let cx=cv.getContext('2d');
@@ -27,7 +27,7 @@ function rs(){DPR=devicePixelRatio||1;cv.width=innerWidth*DPR;cv.height=innerHei
 addEventListener('resize',rs);rs();
 /* ================= WORLD / LOCATIONS ================= */
 // [name,x,y,w,h,floor,label,darkness]
-const Z=[['forest',700,420,1000,480,'#3B5240','FOREST',.35],['future',1000,0,400,420,'#F6EBDD','THE FUTURE',0],
+const Z=[['forest',700,420,1000,480,'#3B5240','FOREST',.35],['future',1000,-1500,400,1920,'#F6EBDD','THE FUTURE',0],
 ['cafe',300,900,600,500,'#59463F','CAFÉ',0],['city',900,900,600,500,'#202334','CITY',0],['beach',1500,900,700,500,'#D8C3A5','BEACH',.5],
 ['garden',300,1400,600,800,'#7F967B','GARDEN',.3],['home',900,1400,600,800,'#302A3D','OUR HOME',0],['pet',1500,1400,600,800,'#7F967B','PET AREA',.32],['bedroom',900,1800,600,400,'#302A3D','BEDROOM',0],
 ['station',-300,1500,600,500,'#3A3A4A','STATION',.15],['lighthouse',2200,900,600,500,'#2C3A50','LIGHTHOUSE',.35],['orchard',300,2200,1800,500,'#42604A','ORCHARD',.28],['market',2100,1400,700,800,'#3B3148','NIGHT MARKET',.1],
@@ -59,7 +59,7 @@ const OB=[
 {x:1120,y:1620,e:'🧦',l:['One sock. The other has been missing since before we met.','Mysterious.']},
 {x:1170,y:1485,e:'🕯️',l:['Nobody lit this. It just does that.']},
 {id:'fridge',x:1462,y:1484,w:40,h:56,c:'#D9C6B3',s:1,a:'fridge'},
-{x:1380,y:1480,w:50,h:30,c:'#59463F',s:1,e:'🍳',l:['I have absolutely no idea what I\'m doing.','Send help. Or takeout.']},
+{x:1380,y:1480,w:50,h:30,c:'#59463F',s:1,e:'🍳',a:'cook'},
 {x:1300,y:1590,e:'☕',l:['The mug you\'d probably claim as yours.']},
 {x:1350,y:1660,w:80,h:44,c:C.wood,s:1,l:['Where we\'ll eat dinner at 11 PM, again.']},
 {id:'chair',x:1425,y:1660,e:'🪑',l:['Your seat.']},
@@ -111,6 +111,8 @@ OB.push(
 {x:700,y:3288,e:'🚪',z:26,a:'exit'},{x:610,y:3050,w:90,h:32,c:C.wood,s:1,e:'📚',z:22,a:'books'},{x:730,y:3050,w:90,h:32,c:C.wood,s:1,e:'📖',z:22,l:['A book with our names in the margins.','Not written yet.']},{x:850,y:3050,w:60,h:32,c:C.wood,s:1,e:'📚',z:22,l:['Cookbooks. Optimistic ones.']},{x:560,y:3220,e:'🛋️',l:['We\'d both fall asleep in ten minutes.']},{x:800,y:3200,e:'🐈',l:['It has decided you\'re staff.']},{x:640,y:3130,e:'☕',l:['Still warm. Nobody\'s here. Weird.']},
 {x:1200,y:3288,e:'🚪',z:26,a:'exit'},{x:1065,y:3045,w:36,h:44,c:'#2b2f55',s:1,e:'🕹️',z:20,a:'arcade'},{x:1125,y:3045,w:36,h:44,c:'#2b2f55',s:1,e:'👾',z:20,l:['Prepare to lose.']},{x:1185,y:3045,w:36,h:44,c:'#2b2f55',s:1,e:'🏓',z:20,l:['You\'d win. I\'d call it a tie.']},{x:1340,y:3055,w:44,h:50,c:C.rose,s:1,e:'🧸',z:24,l:['₱200 to win a ₱50 plush.','Worth it. Every time.']},{x:1100,y:3200,e:'🪙',l:['A token. Save it for the last try.']},
 {x:1700,y:3288,e:'🚪',z:26,a:'exit'},{x:1700,y:3055,w:260,h:34,c:C.wood,s:1,e:'🍜',z:24,a:'order'},{x:1700,y:3018,e:'🧑‍🍳',z:20,l:['"Two bowls again?"','He already knows.']},{x:1590,y:3140,e:'🪑',l:['Your stool. Closer to the good broth.']},{x:1810,y:3140,e:'🪑',l:['Mine. Facing you, on purpose.']},{x:1560,y:3230,e:'🏮',g:1,l:['It flickers whenever someone says "just a bite".']});
+const YR=[[330,1,'📦',['Unpacked. Mostly.','Some boxes will stay boxes forever.']],[80,3,'🦴',[CFG.petName+' is older now.','Still convinced the house belongs to '+CFG.petName+'.']],[-170,7,'🗺️',['A map covered in pins.','Every star in the sky is a real place now.']],[-420,15,'🍝',['Dinner at 11 PM. Still.','Same table. Better arguments.']],[-670,25,'🏡',['Our address. Nicer than the doghouse\'s.','Finally.']],[-920,40,'📸',['A wall of photographs.','Every one of them was "not yet developed" once.']],[-1170,50,'🪑',['Two chairs, side by side.','One of them has always been yours.']]];
+OB.push(...YR.map((r,i)=>({x:i%2?1290:1110,y:r[0],e:r[2],z:24,l:r[3]})));
 OB.forEach((o,i)=>{o.id=o.id||'o'+i;o.w=o.w||28;o.h=o.h||28});
 const vis=o=>!((o.f!=null&&S.fl.includes(o.f))||(o.tk!=null&&S.tk.includes(o.tk)));
 function pick(id,l){const n=S.c[id]||0;S.c[id]=n+1;say(l[Math.min(n,l.length-1)]);save()}
@@ -125,7 +127,7 @@ key1(){S.keys.includes(1)?pick('k1b',['Just a tree now. A very good one.']):say(
 key2(){S.keys.includes(2)?pick('k2b',['Just loose change now.']):say('A jar of loose change.\nAnd a small key, taped to the bottom.',()=>{S.coin=1;getKey(2);setTimeout(()=>toast('🪙 A COIN'),3200)})},
 gate(){say(S.gate?'Open.':'Shut tight. It looks like it\'s waiting for something to bloom.')},
 door(){say(S.door?'It\'s open.':'🔒\nREQUIRES 3 KEYS')},
-menu,booth,enter:o=>{const n=S.c[o.id]||0;S.c[o.id]=n+1;n?goIn(o.b):say(o.l,()=>goIn(o.b))},exit:goOut,
+menu,booth,cook:cookGame,enter:o=>{const n=S.c[o.id]||0;S.c[o.id]=n+1;n?goIn(o.b):say(o.l,()=>goIn(o.b))},exit:goOut,
 showing:()=>lst('NOW SHOWING',[['THE ONE YOU PICK','19:00','I\'ll say I don\'t like it. Then watch it twice.'],['THE ONE I PICK','21:30','You\'ll pretend to be asleep. You won\'t be.'],['WHAT WE ACTUALLY WATCH','23:45','Something neither of us chose. We\'ll talk through half of it.']]),
 books:()=>lst('THE SHELF',CFG.flowers.map(f=>[f,'','Not written yet. We\'ll write it together.'])),arcade:arcadeGame,
 order:()=>lst('ORDER',[['SPICY NOODLES','₱0','You\'ll say "just a bite" and finish half.'],['MILD NOODLES','₱0','Mine. I have no dignity.'],['ONE BOWL, TWO SPOONS','₱0','Our actual order.'],[CFG.favDrink.toUpperCase(),'₱0','On the house. Obviously.']]),pet:aPet,owl:aOwl,mail:aMail,fountain:aFount,bottle:aBottle,ticket:aTicket,light:aLight,board:()=>lst('DEPARTURES',CFG.trips),stall:()=>lst('NIGHT MARKET',CFG.stall),camp:()=>look(['You lie back on the grass.','The sky is very interested in you.']),wheel:()=>look(['At the top, the whole map lies below you.','Every bit of it is somewhere we haven\'t been yet.'])};
@@ -137,7 +139,7 @@ function hit(x,y){if(!walk(x-6,y)||!walk(x+6,y))return 1;const a=x-6,b=y-4,t=r=>
 return SO.some(t)||(!S.gate&&t(GATE))||(!S.door&&t(DOOR))||OB.some(o=>o.s&&t({x:o.x-o.w/2,y:o.y-o.h/2,w:o.w,h:o.h}))}
 /* ================= INPUT ================= */
 const K={};let jx=0,jy=0;
-addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'){if(e.code==='Enter'&&window.bsub)bsub();return}K[e.code]=1;if(e.code.startsWith('Arrow')||e.code==='Space')e.preventDefault();if((e.code==='KeyE'||e.code==='Space')&&!e.repeat)press();if(!e.repeat&&e.code==='KeyM')mi?closeMap():openMap();if(e.code==='Escape'&&mi)closeMap()});
+addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'){if(e.code==='Enter'&&window.bsub)bsub();return}K[e.code]=1;if(e.code.startsWith('Arrow')||e.code==='Space')e.preventDefault();if((e.code==='KeyE'||e.code==='Space')&&!e.repeat)press();if(!e.repeat&&e.code==='KeyM')mi?closeMap():openMap();if(!e.repeat&&e.code==='KeyJ')openJournal();if(e.code==='Escape'&&mi)closeMap()});
 addEventListener('keyup',e=>K[e.code]=0);addEventListener('blur',()=>{for(const k in K)K[k]=0});
 function press(){if(dOpen){showD();return}if(mode!=='play'||pOpen||sit)return;const o=near();if(o)interact(o)}
 $('act').onpointerdown=e=>{e.preventDefault();press()};$('dlg').onclick=press;
@@ -156,7 +158,7 @@ const gobtn=(t,f)=>{const g=$('go');g.textContent=t;g.onclick=f;g.classList.add(
 const fade=(o,ms)=>{const f=$('fade');f.style.transition=`opacity ${ms}ms`;f.style.opacity=o;return sleep(ms)};
 const line=async(t,ms)=>{const e=$('cine');e.textContent=t;e.classList.add('on');await sleep(ms);e.classList.remove('on');await sleep(800)};
 const nohud=b=>document.body.classList.toggle('nohud',b);
-function hud(){$('hud').innerHTML=`🔑 ${S.keys.length}/3 &nbsp; 🌹 ${S.fl.length}/4 &nbsp; ⭐ ${S.stars.length}/5 &nbsp; 🎫 ${S.tk.length}/4<b id="mb" title="Map (M)">🗺</b><b id="rst" title="Reset progress">↺</b>`;$('mb').onclick=openMap;$('rst').onclick=()=>{if(confirm('Reset all progress?')){noSave=1;localStorage.removeItem(KEY);location.reload()}}}
+function hud(){$('hud').innerHTML=`🔑 ${S.keys.length}/3 &nbsp; 🌹 ${S.fl.length}/4 &nbsp; ⭐ ${S.stars.length}/5 &nbsp; 🎫 ${S.tk.length}/4<b id="mb" title="Map (M)">🗺</b><b id="jb" title="Missions (J)">📜</b><b id="rst" title="Reset progress">↺</b><div id="mq">${mline()}</div>`;$('mb').onclick=openMap;$('jb').onclick=openJournal;$('rst').onclick=()=>{if(confirm('Reset all progress?')){noSave=1;localStorage.removeItem(KEY);location.reload()}}}
 function menu(){const it=[['YOUR FAVORITE','₱0',CFG.favDrink+'. Obviously.'],['MY FAVORITE','₱0',CFG.myFav+'.'],['OUR ORDER','₱0','Whatever we end up ordering.'],['ONE MORE CONVERSATION','₱∞','Always in stock.']];
 pan('<h2>MENU</h2>'+it.map((r,i)=>`<div class="row" data-i="${i}">${r[0]}<i></i>${r[1]}</div>`).join('')+'<p id="mr">&nbsp;</p><button id="px">CLOSE</button>');
 document.querySelectorAll('.row').forEach(e=>e.onclick=()=>{$('mr').textContent='"'+it[e.dataset.i][2]+'"';AU.chime()});$('px').onclick=unpan}
@@ -186,7 +188,7 @@ const SP=[[.22,.32],[.42,.16],[.63,.3],[.8,.15],[.52,.44]];
 async function toSky(win){hideGo();mode='cine';await fade(1,900);sky={t:0,win,say:0};mode='sky';nohud(1);AU.mix(.02,.03,700);await fade(0,1600);
 setTimeout(()=>gobtn('COME DOWN',down),win?7000:5000)}
 async function down(){hideGo();await fade(1,900);sit=0;mode='play';nohud(0);AU.mix(...MIX[curZ]);await fade(0,1200)}
-async function ending(){mode='cine';nohud(1);AU.mix(0,0);await sleep(1600);await fade(1,2600);p.x=1200;p.y=1150;p.w=0;cam.x=1200;cam.y=1150;rb={a:{},t:[],p:0,tp:0};mode='void';await fade(0,1800);await sleep(5500);
+async function ending(){S.fin=1;mode='cine';nohud(1);AU.mix(0,0);await sleep(1600);await fade(1,2600);p.x=1200;p.y=1150;p.w=0;cam.x=1200;cam.y=1150;rb={a:{},t:[],p:0,tp:0};mode='void';await fade(0,1800);await sleep(5500);
 mode='rebuild';const st=[['A house appears.',['home','bedroom']],['A garden appears.',['garden','pet']],['A road appears.',['city']],['A café appears.',['cafe']],['A beach appears.',['beach']],['The city appears.',['bld','forest']]];
 for(let i=0;i<st.length;i++){rb.t.push(...st[i][1]);rb.tp=(i+1)/7;if(i==0)AU.tone(392,3,.03);await line(st[i][0],1900)}
 await sleep(1500);AU.mix(.05,0,1200);await line('None of this exists.',2800);await line('Not yet.',2400);await line('But that\'s the point.',3400);gobtn('BUILD',buildFlow)}
@@ -209,7 +211,7 @@ let ix=(K.KeyD||K.ArrowRight?1:0)-(K.KeyA||K.ArrowLeft?1:0)+jx,iy=(K.KeyS||K.Arr
 if(sit&&m>.5&&!dOpen){sit=0;hideGo()}
 if(!dOpen&&!pOpen&&!sit&&m>.12){if(m>1){ix/=m;iy/=m}const sp=CFG.speed*(curZ==='bedroom'?.75:1)*dt;if(!hit(p.x+ix*sp,p.y))p.x+=ix*sp;if(!hit(p.x,p.y+iy*sp))p.y+=iy*sp;if(Math.abs(ix)>.1)p.dir=ix>0?1:-1;p.w=1;p.st+=dt;if(p.st>.32){p.st=0;AU.step()}}else p.w=0;
 const inn=p.x>1830&&p.x<1885&&p.y>1218&&p.y<1250;if(inn&&!wasIn&&!sit&&!dOpen){sit=1;p.w=0;say('Somewhere we\'d probably sit for hours without realizing how late it got.',()=>{if(sit)gobtn('LOOK UP',()=>toSky(0))})}wasIn=inn;
-if(S.door&&p.y<80&&!dOpen)ending();
+if(S.door&&p.y<-1330&&!dOpen){const n=need();if(!n.length)ending();else{say(['The timeline ends here. For now.','Still unwritten:\n'+n.join('\n')+'\n\nCome back when the world is ready.']);p.y=-1290}}
 cam.x+=(p.x-cam.x)*Math.min(1,dt*5);cam.y+=(p.y-cam.y)*Math.min(1,dt*5)}
 /* ================= RENDERING ================= */
 const rr=(x,y,w,h,r,c)=>{cx.beginPath();cx.roundRect?cx.roundRect(x,y,w,h,r):cx.rect(x,y,w,h);cx.fillStyle=c;cx.fill()};
@@ -261,8 +263,8 @@ function openMap(){if(mode!=='play'||pOpen||dOpen)return;pan('<h2>MAP</h2><canva
 function closeMap(){clearInterval(mi);mi=0;unpan()}
 function mapDraw(){const c=$('mp');if(!c||!mi)return;const g=c.getContext('2d'),k=560/3100,X=x=>(x+300)*k,Y=y=>y*k;g.fillStyle='#0b0f1c';g.fillRect(0,0,560,490);g.font='10px Georgia';g.textAlign='center';g.textBaseline='middle';g.lineJoin='round';
 const tx=(t,x,y,f)=>{g.lineWidth=3;g.strokeStyle='#101525';g.strokeText(t,x,y);g.fillStyle=f||C.cream;g.fillText(t,x,y)};
-for(const z of Z){const v=S.vis.includes(z[0]),x=X(z[1]),y=Y(z[2]),w=z[3]*k,h=z[4]*k;g.globalAlpha=v?.9:.55;g.fillStyle=v?z[5]:'#252a42';g.fillRect(x,y,w,h);g.globalAlpha=1;g.lineWidth=1;g.strokeStyle='rgba(231,201,139,.4)';g.strokeRect(x,y,w,h);tx(v?z[6]:'?',x+w/2,y+h/2)}
-if(S.vis.includes('city'))BLD.forEach(([bx,em])=>g.fillText(em,X(bx+45),Y(975)));const q=ins||p,px=X(q.x),py=Y(q.y),r=3.5+Math.sin(T*6);g.fillStyle=C.gold;g.beginPath();g.arc(px,py,r,0,7);g.fill();g.strokeStyle=C.gold;g.lineWidth=1.5;g.beginPath();g.arc(px,py,r+5+Math.sin(T*3)*2,0,7);g.stroke();
+for(const z of Z){const v=S.vis.includes(z[0]),x=X(z[1]),zy=Math.max(0,z[2]),y=Y(zy),w=z[3]*k,h=(z[2]+z[4]-zy)*k;g.globalAlpha=v?.9:.55;g.fillStyle=v?z[5]:'#252a42';g.fillRect(x,y,w,h);g.globalAlpha=1;g.lineWidth=1;g.strokeStyle='rgba(231,201,139,.4)';g.strokeRect(x,y,w,h);tx(v?z[6]:'?',x+w/2,y+h/2)}
+if(S.vis.includes('city'))BLD.forEach(([bx,em])=>g.fillText(em,X(bx+45),Y(975)));const q=ins||p,px=X(q.x),py=Y(Math.max(0,q.y)),r=3.5+Math.sin(T*6);g.fillStyle=C.gold;g.beginPath();g.arc(px,py,r,0,7);g.fill();g.strokeStyle=C.gold;g.lineWidth=1.5;g.beginPath();g.arc(px,py,r+5+Math.sin(T*3)*2,0,7);g.stroke();
 tx(ins?'INSIDE':'YOU ARE HERE',Math.max(45,Math.min(515,px)),Math.max(10,py-16),C.gold);g.font='9px serif';g.fillText('🐕',X(pet.x),Y(pet.y))}
 let ins=null;
 async function goIn(b){if(ins)return;mode='cine';await fade(1,450);ins={b,x:p.x,y:p.y};p.x=b*500+200;p.y=3240;p.dir=1;cam.x=p.x;cam.y=p.y;if(pet.fol){pet.x=p.x;pet.y=p.y}await sleep(150);mode='play';await fade(0,550)}
@@ -275,6 +277,50 @@ cinema(x,y,w,h){const a=ZA('cinema');cx.fillStyle=Math.sin(T*2)>0?C.lav:C.rose;c
 books(x,y,w,h){cx.fillStyle='rgba(184,111,124,.3)';cx.beginPath();cx.ellipse(x+200,y+170,110,50,0,0,7);cx.fill()},
 arcade(x,y,w,h){for(let i=0;i<8;i++){cx.fillStyle=i%2?'#2d3560':'#3d2f5c';cx.fillRect(x+i*50,y+150,50,150)}glow(x+110,y+60,90,.25+.08*Math.sin(T*4),'120,150,255')},
 noodle(x,y,w,h){cx.fillStyle='rgba(246,235,221,.25)';for(let i=0;i<5;i++)cx.fillRect(x+170+i*14+Math.sin(T*2+i)*3,y+40-((T*20+i*9)%30),2,6)}});
+const need=()=>[[4-S.fl.length,'🌹 flower'],[5-S.stars.length,'⭐ star'],[4-S.tk.length,'🎫 ticket']].filter(a=>a[0]>0).map(a=>a[0]+' '+a[1]+(a[0]>1?'s':'')).concat(S.wish?[]:['🪙 a wish at the fountain'],S.bottle?[]:['🍾 a message in a bottle'],S.cook?[]:['🍳 a dinner you tried to cook']);
+Object.assign(DECO,{future(x,y,w,h){const g=cx.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#6b5b83');g.addColorStop(.5,'#D99A86');g.addColorStop(1,C.cream);cx.fillStyle=g;cx.fillRect(x,y,w,h);
+cx.strokeStyle='rgba(16,21,37,.25)';cx.lineWidth=2;cx.setLineDash([6,8]);cx.beginPath();cx.moveTo(1200,400);cx.lineTo(1200,-1300);cx.stroke();cx.setLineDash([]);
+cx.fillStyle='rgba(16,21,37,.4)';cx.font='16px Georgia';cx.textAlign='center';cx.textBaseline='middle';for(const r of YR)cx.fillText('YEAR '+r[1],1200,r[0]+34);
+rr(1165,-1490,70,44,4,'#22304a');cx.fillStyle=Math.sin(T*3)>0?C.lav:C.rose;cx.fillRect(1172,-1484,56,32);glow(1200,-1440,90,.25,'246,235,221');rr(1150,-1400,100,24,4,C.rose);ch(1178,-1392,C.rose,'#d8d6e0',0,1,1);ch(1222,-1392,C.ocean,'#d8d6e0',0,-1,1)}});
+function cookGame(){if(!S.c.cook){S.c.cook=1;return say(['I have absolutely no idea what I\'m doing.','Send help. Or takeout.','...Try anyway?'],cookGame)}
+if(S.cook)return say(['The stove is fine now. Suspiciously.','You order takeout anyway.']);
+let r=0,h=0,x=0,d=1,z=0,iv=0;const W=.2,Q=s=>$('ck').textContent=s,Zn=()=>{z=.1+Math.random()*.6;$('cz').style.cssText=`left:${z*100}%;width:${W*100}%`};
+pan('<h2>COOKING</h2><p id="ck"></p><div id="cb" style="position:relative;width:min(340px,80vw);height:18px;border:1px solid var(--gold);margin:14px 0 22px"><i id="cz" style="position:absolute;top:0;height:100%;background:rgba(127,150,123,.7)"></i><i id="cm" style="position:absolute;top:-4px;width:4px;height:26px;background:var(--gold)"></i></div><button id="cs">STIR</button>');
+Zn();Q('Round 1/5. Stir when the marker is in the green.');
+iv=setInterval(()=>{const m=$('cm');if(!m||!iv)return;x+=d*.022*(1+r*.25);if(x>1||x<0){d=-d;x=Math.max(0,Math.min(1,x))}m.style.left=`calc(${x*100}% - 2px)`},30);
+$('cs').onclick=()=>{if(r>=5){unpan();return say(['Dinner tonight: takeout.','Again.'],()=>toast('🍳 MEAL "COOKED"'))}
+const ok=x>z&&x<z+W;ok?(h++,AU.chime()):AU.tone(150,.25,.05,'sawtooth');r++;
+if(r<5){Zn();Q('Round '+(r+1)+'/5. '+(ok?'Nice.':'Smoke.'))}else{clearInterval(iv);iv=0;S.cook=1;Q(h>=4?'Actually edible. You order takeout anyway.':h>=2?'Some smoke. Some flavour. You order takeout.':'It\'s on fire. You order takeout. Quickly.');$('cs').textContent='CLOSE'}}}
+AU.sb=0;AU.th=0;
+AU.song=function(){if(!this.c||mode!=='play'||(this.f.music&&this.f.music.ok))return;const lv=S.fl.length+S.keys.length+S.stars.length+S.tk.length;if(!lv)return;
+const th=[1,4,8,12,16].filter(q=>lv>=q).length;if(th>this.th){this.th=th;setTimeout(()=>toast('🎵 THE SONG GROWS'),2400)}
+const b=this.sb++,r=[0,-2,-4,-2][(b>>3)&3],v=curZ==='bedroom'?.5:1,n=m=>220*Math.pow(2,(r+m)/12);
+this.tone(n([0,4,7,9,7,4,2,-3][b&7]),1.1,.016*v,'triangle');
+if(lv>=4&&!(b&1))this.tone(n(-12),2,.03*v);
+if(lv>=8&&b%4==2)this.tone(n([12,16,19,21][(b>>2)&3]),1.6,.012*v);
+if(lv>=12)this.tone(n([7,9,11,14,12,9,7,4][b&7]),1,.008*v);
+if(lv>=16&&(b&7)==0)[0,4,7].forEach(m=>this.tone(n(m-12),4,.012*v))};
+setInterval(()=>AU.song(),1200);
+/* ================= MISSIONS (completed in order) ================= */
+document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'#hud #mq{margin-top:6px;font-size:11px;letter-spacing:.06em;color:var(--cream);opacity:.8;max-width:min(70vw,420px);line-height:1.4}#mt{position:fixed;z-index:37;top:14px;right:16px;max-width:min(60vw,340px);text-align:right;white-space:pre-line;font-size:12px;letter-spacing:.1em;line-height:1.6;color:var(--gold);background:rgba(16,21,37,.85);border:1px solid rgba(231,201,139,.5);padding:10px 14px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .6s}#mt.on{opacity:1}body.nohud #mt{display:none}'}));
+const mtEl=document.body.appendChild(Object.assign(document.createElement('div'),{id:'mt'}));let mtt=0;
+const MS=[
+['Step into the café',()=>S.vis.includes('cafe'),'It\'s the warm light west of the city.'],
+['Find the key hiding in the café',()=>S.keys.includes(2),'Something small is taped to the bottom of a jar.'],
+['Go home. Check where you sleep.',()=>S.keys.includes(3),'Sit on the couch, the pillow and your chair first. Then the bed.'],
+['Pick the four flowers in the garden',()=>S.gate,'Four roses, scattered around the garden.'],
+['Find the key behind the glowing tree',()=>S.keys.includes(1),'The forest is north of the city. Follow the glow.'],
+['Reach the edges of the map. Find 4 tickets',()=>S.tk.length>=4,'West, east, south, southeast: a station, a lighthouse, an orchard, a market.'],
+['Make a wish at the fountain',()=>!!S.wish,'You need a coin. The café jar held more than a key.'],
+['Send a message in a bottle',()=>!!S.bottle,'Somewhere by the sea.'],
+['Look up. Find all five stars',()=>S.stars.length>=5,'A bedroom window, a quiet seat on the beach, the lighthouse, the wheel, the tent. Then tap each star.'],
+['Try to cook dinner',()=>!!S.cook,'The stove at home. Bring low expectations.'],
+['Walk the timeline to the end',()=>!!S.fin,'North, through the forest door. All the way.']];
+function mline(){return S.ms<MS.length?'◇ '+(S.ms+1)+'/'+MS.length+'  '+MS[S.ms][0]:'✔ ALL MISSIONS COMPLETE'}
+function msCheck(){if(mode!=='play')return;let n=0;while(S.ms<MS.length&&MS[S.ms][1]()){S.ms++;n++}if(!n)return;hud();
+mtEl.textContent=(n>1?'✔ '+n+' MISSIONS COMPLETE':'✔ MISSION COMPLETE\n'+MS[S.ms-1][0])+(S.ms<MS.length?'\n\n◇ NEW: '+MS[S.ms][0]:'\n\nAll missions complete.');mtEl.classList.add('on');clearTimeout(mtt);mtt=setTimeout(()=>mtEl.classList.remove('on'),5000);AU.tone(1046,.6,.04)}
+function openJournal(){if(mode!=='play'||pOpen||dOpen)return;lst('MISSIONS',MS.map((m,i)=>[i<S.ms?'✔ '+m[0]:i==S.ms?'◇ '+m[0]:'🔒 ???',i==S.ms?'NOW':'',i<=S.ms?m[2]:'Not yet.']))}
+setInterval(msCheck,500);
 function drawTree(t){const s=Math.sin(T*1.2+t.x)*1.3;cx.fillStyle='#5b4438';cx.fillRect(t.x-2,t.y-8,4,8);cx.fillStyle='#3f5a47';cx.beginPath();cx.arc(t.x+s,t.y-20,15,0,7);cx.fill();cx.fillStyle='#4c6b52';cx.beginPath();cx.arc(t.x+s-4,t.y-24,10,0,7);cx.fill()}
 function glow(x,y,r,a,col){const g=cx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(${col||'231,201,139'},${a})`);g.addColorStop(1,'rgba(231,201,139,0)');cx.fillStyle=g;cx.fillRect(x-r,y-r,r*2,r*2)}
 function obj(o){cx.globalAlpha=ZA(zn(o.x,o.y));const sw=o.f!=null?Math.sin(T*1.6+o.f)*1.2:0;
@@ -296,7 +342,7 @@ if(!S.gate){rr(1130,598,140,12,2,C.wood);for(let x=1140;x<1270;x+=16)rr(x,588,5,
 rr(1130,402,140,20,3,S.door?C.gold:'#D9C6B3');if(S.door)glow(1200,412,90,.5);else{cx.font='14px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText('🔒',1200,412)}
 const L=[];for(const t of TR)if(inv(t.x,t.y))L.push(t);for(const o of OB)if(vis(o)&&inv(o.x,o.y)&&!(o.a==='gate'||o.a==='door'))L.push(o);L.push(p);
 const ky=o=>o.k||(o===p||o.tr?o.y:o.y+(o.c?o.h/2:8));L.sort((a,b)=>ky(a)-ky(b));
-for(const o of L){if(o.tr){cx.globalAlpha=ZA(zn(o.x,o.y));drawTree(o);cx.globalAlpha=1}else if(o===p)ch(p.x,p.y,C.rose,C.lav,p.w,p.dir,sit);else obj(o)}
+for(const o of L){if(o.tr){cx.globalAlpha=ZA(zn(o.x,o.y));drawTree(o);cx.globalAlpha=1}else if(o===p)ch(p.x,p.y,C.rose,curZ==='future'?lc(C.lav,'#d8d6e0',Math.max(0,Math.min(1,(200-p.y)/1400))):C.lav,p.w,p.dir,sit);else obj(o)}
 for(const [x,y] of LP){cx.globalAlpha=ZA(zn(x,y));if(inv(x,y))glow(x,y,70,.22+Math.sin(T*7+x)*.04)}cx.globalAlpha=1;
 if(mode==='rebuild')return;
 cx.fillStyle=C.gold;for(let i=0;i<40;i++){cx.globalAlpha=.3+.3*Math.sin(T*2+i);cx.fillRect(cam.x-VW/2+((hf(i)*VW+T*(3+i%4)+Math.sin(T*.3+i)*20)%VW),cam.y-VH/2+(((hf(i+77)*VH-T*(4+i%3))%VH)+VH)%VH,1.4,1.4)}cx.globalAlpha=1;
@@ -317,7 +363,7 @@ let last=0;function frame(ts){const dt=Math.min(.1,(ts-last)/1000||0);last=ts;up
 setInterval(save,4000);addEventListener('beforeunload',save);
 /* ================= BOOT ================= */
 hud();
-$('start').onclick=async()=>{AU.init();$('title').classList.add('off');await sleep(1300);const hp=$('help');hp.textContent=TOUCH?'JOYSTICK — MOVE\nBUTTON — INTERACT\n🗺 (TOP LEFT) — MAP':'WASD / ARROW KEYS — MOVE\nE — INTERACT\nM — MAP';hp.classList.add('on');await sleep(3400);hp.classList.remove('on');await sleep(900);
+$('start').onclick=async()=>{AU.init();$('title').classList.add('off');await sleep(1300);const hp=$('help');hp.textContent=TOUCH?'JOYSTICK — MOVE\nBUTTON — INTERACT\n🗺 (TOP LEFT) — MAP\n📜 — MISSIONS':'WASD / ARROW KEYS — MOVE\nE — INTERACT\nM — MAP\nJ — MISSIONS';hp.classList.add('on');await sleep(3400);hp.classList.remove('on');await sleep(900);
 if(S.done){mode='end';results();return}
 await fade(1,700);mode='play';nohud(0);await fade(0,1800)};
 requestAnimationFrame(frame);
