@@ -90,6 +90,7 @@ pet,
 // city
 {x:960,y:1058,a:'enter',b:0,l:['One day we\'ll argue about what movie to watch.']},{x:1055,y:1058,a:'enter',b:1,l:['I\'ll pretend I came here for you.']},
 {x:1355,y:1058,a:'enter',b:2,l:['Prepare to lose.']},{x:1450,y:1058,a:'enter',b:3,l:['Our future argument about where to eat.']},
+{x:1120,y:960,e:'🪜',z:26,a:'enter',b:4,l:['A ladder leaning against the back wall of the bookshop.','It leads up to the roof.']},
 {x:1200,y:1230,w:34,h:46,c:C.rose,s:1,e:'📸',g:1,a:'booth'},
 {x:1000,y:1300,e:'🗑️',l:['Something in here is watching me.']},{x:1400,y:1300,e:'🪑',l:['Reserved for whoever\'s late.']},
 // beach
@@ -111,7 +112,7 @@ OB.push(
 {x:700,y:3288,e:'🚪',z:26,a:'exit'},{x:610,y:3050,w:90,h:32,c:C.wood,s:1,e:'📚',z:22,a:'books'},{x:730,y:3050,w:90,h:32,c:C.wood,s:1,e:'📖',z:22,l:['A book with our names in the margins.','Not written yet.']},{x:850,y:3050,w:60,h:32,c:C.wood,s:1,e:'📚',z:22,a:'secret'},{x:560,y:3220,e:'🛋️',l:['We\'d both fall asleep in ten minutes.']},{x:800,y:3200,e:'🐈',l:['It has decided you\'re staff.']},{x:640,y:3130,e:'☕',l:['Still warm. Nobody\'s here. Weird.']},
 {x:1200,y:3288,e:'🚪',z:26,a:'exit'},{x:1065,y:3045,w:36,h:44,c:'#2b2f55',s:1,e:'🕹️',z:20,a:'arcade'},{x:1125,y:3045,w:36,h:44,c:'#2b2f55',s:1,e:'👾',z:20,l:['Prepare to lose.']},{x:1185,y:3045,w:36,h:44,c:'#2b2f55',s:1,e:'🏓',z:20,l:['You\'d win. I\'d call it a tie.']},{x:1340,y:3055,w:44,h:50,c:C.rose,s:1,e:'🧸',z:24,l:['₱200 to win a ₱50 plush.','Worth it. Every time.']},{x:1100,y:3200,e:'🪙',l:['A token. Save it for the last try.']},
 {x:1700,y:3288,e:'🚪',z:26,a:'exit'},{x:1700,y:3055,w:260,h:34,c:C.wood,s:1,e:'🍜',z:24,a:'order'},{x:1700,y:3018,e:'🧑‍🍳',z:20,a:'npc',k:'chef'},{x:1590,y:3140,e:'🪑',l:['Your stool. Closer to the good broth.']},{x:1810,y:3140,e:'🪑',l:['Mine. Facing you, on purpose.']},{x:1560,y:3230,e:'🏮',g:1,l:['It flickers whenever someone says "just a bite".']});
-const YR=[[330,1,'📦',['Unpacked. Mostly.','Some boxes will stay boxes forever.']],[80,3,'🦴',[CFG.petName+' is older now.','Still convinced the house belongs to '+CFG.petName+'.']],[-170,7,'🗺️',['A map covered in pins.','Every star in the sky is a real place now.']],[-420,15,'🍝',['Dinner at 11 PM. Still.','Same table. Better arguments.']],[-670,25,'🏡',['Our address. Nicer than the doghouse\'s.','Finally.']],[-920,40,'📸',['A wall of photographs.','Every one of them was "not yet developed" once.']],[-1170,50,'🪑',['Two chairs, side by side.','One of them has always been yours.']]];
+const YR=[[330,1,'📦',['Unpacked. Mostly.','Some boxes will stay boxes forever.']],[80,3,'🦴',[CFG.petName+' is older now.','Still convinced the house belongs to '+CFG.petName+'.']],[-170,7,'🗺️',['A map covered in pins.','Every star in the sky is a real place now.']],[-420,15,'👨‍👩‍👦‍👦',['Happy Marriage.','With Twins Of course.']],[-670,25,'🏡',['Our address. Nicer than the doghouse\'s.','Finally.']],[-920,40,'📸',['A wall of photographs.','Every one of them was "not yet developed" once.']],[-1170,50,'🪑',['Two chairs, side by side.','One of them has always been yours.']]];
 OB.push(...YR.map((r,i)=>({x:i%2?1290:1110,y:r[0],e:r[2],z:24,l:r[3],a:r[1]==25?'cap':0})));
 OB.push(
 {x:200,y:1640,e:'🧑‍✈️',z:22,a:'npc',k:'master'},{x:2400,y:1110,e:'🧓',z:22,a:'npc',k:'keeper'},{x:2380,y:1700,e:'🔮',g:1,z:24,a:'npc',k:'fort'},
@@ -121,13 +122,13 @@ OB.push(
 {x:2200,y:3288,e:'🪜',z:26,a:'exit'},{x:2200,y:3150,e:'🪑',a:'roofsky'},{x:2100,y:3110,e:'🔭',l:['Pointed at a star with no name yet.','Yours to pick.']},{x:2310,y:3130,e:'📝',l:['"If you\'re reading this, you found the secret room."','"Nobody else knows about it."']});
 OB.push(
 {x:2450,y:2050,e:'🏺',z:26,a:'pottery'},{x:1440,y:1830,e:'🪞',g:1,a:'mirror'},{x:1560,y:1470,e:'🦴',a:'hide'},
-{x:760,y:540,e:'🛖',z:34,a:'enter',b:5,l:['A rope ladder, half hidden in the leaves.','Someone has been keeping this place secret.']},
+{x:930,y:680,e:'🪢',z:34,a:'enter',b:5,l:['A rope ladder, half hidden in the leaves.','Someone has been keeping this place secret.']},
 {x:2680,y:1130,e:'🕳️',a:'enter',b:6,l:['A dark hole under the lighthouse rocks.','It smells like adventure and damp.']},
 {x:2700,y:3288,e:'🪜',z:26,a:'exit'},{x:2700,y:3150,e:'🪑',a:'tsky'},{x:2600,y:3080,e:'📖',l:['A guestbook. One entry so far:','"We were here."']},{x:2800,y:3080,e:'🕯️',g:1,l:['Somebody keeps it lit. Nobody admits to it.']},
 {x:3200,y:3288,e:'🪜',z:26,a:'exit'},{x:3100,y:3080,e:'💎',g:1,l:['It hums when you\'re near.']},{x:3300,y:3090,e:'💎',g:1,l:['A different note. Slightly flat.']},{x:3200,y:3180,e:'🗣️',l:['"Hello?"','"...hello? ...hello?"','It\'s only you. Enjoy it.']});
 OB.push(
 {x:1600,y:1180,e:'🪁',a:'kite'},{x:2300,y:1235,e:'⛵',a:'boats'},{x:2500,y:1130,e:'🔦',a:'lpuz'},{x:2640,y:1500,e:'🎇',g:1,a:'fest'},
-{x:1350,y:2520,e:'🥄',a:'lf',k:'chef',need:()=>!S.lf.includes('chef')},{x:1900,y:1150,e:'👓',a:'lf',k:'keeper',need:()=>!S.lf.includes('keeper')},{x:1400,y:520,e:'📯',a:'lf',k:'master',need:()=>!S.lf.includes('master')},
+{x:1350,y:2520,e:'🥄',a:'lf',k:'chef',srt:9999,need:()=>!S.lf.includes('chef')},{x:1900,y:1150,e:'👓',a:'lf',k:'keeper',srt:9999,need:()=>!S.lf.includes('keeper')},{x:1200,y:520,e:'📯',a:'lf',k:'master',srt:9999,need:()=>!S.lf.includes('master')},
 {x:1000,y:1830,e:'🪶',a:'dream'},{x:1440,y:2110,e:'👗',a:'wardrobe'});
 OB.forEach((o,i)=>{o.id=o.id||'o'+i;o.w=o.w||28;o.h=o.h||28});
 const vis=o=>!((o.f!=null&&S.fl.includes(o.f))||(o.tk!=null&&S.tk.includes(o.tk))||(o.need&&!o.need()));
@@ -459,7 +460,230 @@ ACH.push(['Best friends',()=>S.pb>=3],['Neighbourhood hero',()=>S.lr.length>=3])
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'#tl{display:none;position:fixed;z-index:25;right:26px;bottom:124px;flex-direction:column;gap:8px}body.touch #tl{display:flex}body.nohud #tl{display:none!important}#tl button{padding:8px 12px;letter-spacing:0;font-size:16px}'}));
 {const d=document.createElement('div');d.id='tl';d.innerHTML='<button>📷</button><button>🖼</button><button>⚙</button>';document.body.appendChild(d);const b=d.children;b[0].onclick=snap;b[1].onclick=gallery;b[2].onclick=settings}
 /* ================= TRUE ENDING SCENE + FINAL PHOTO ================= */
-Object.assign(CFG,{trueLetter:'Put The Letter Here',finalPhoto:'photo1.png'});
+Object.assign(CFG, {
+  trueLetter: `My love,
+
+I don't know exactly how to start this. Words are not enough to describe my feelings right now. Just to let you know, while I'm writing this letter, I am trying not to cry kase maka-hilak jud haha. I don't know where to start, so I'll begin from the time we met.
+
+Alyy, I've told you so many times how much you mean to me and how important you are in my life. But no matter how many times I say it, I still feel like words aren't enough to explain just how much I value you and how grateful I am to have you in my life. And I will and will keep reminding you of that.
+
+You truly matter to me and to my life.
+
+Since the day I met you, life has never been the same. My life turned sideways, and it was an unexpected turn. I was broken to pieces, filled with bad traumas, full of cries, and broken mentally because of what my past made me experience.
+
+I thought I was never gonna find love anymore. I thought I would be alone forever. So I decided that I didn't want to find another person and would rather be alone until the time I die.
+
+But I was wrong...
+
+All the thoughts, all the things that I thought would happen, all the things that made me believe I would never love again...
+
+They were all wrong.
+
+I thought I would not love again. I thought I would be alone, just a loner who doesn't value love, a future wife, a future child, and a future with someone.
+
+But then you came into my life.
+
+Alyy, you are the best gift God has given me. You truly are an unexpected blessing in my life.
+
+I LOVE YOU SO MUCH, ALYY!!
+
+The day we met was the greatest day of my life. I thought it was just a random encounter that would simply pass by. Just make friends, add them on Facebook, then nothing.
+
+That was truly my thinking—but I was wrong.
+
+The moment I met you, my heartbeat slowed. By the time I met you, it was like time slowed down... Just you and me in a world without people.
+
+That's when I knew it.
+
+I fell for you.
+
+It was love at first sight.
+
+Before I knew it, we started talking. It was like an instant click. It was like we had known each other from the start, even though we had just started talking to each other.
+
+We had the same minds, the same likes and dislikes, the same year that was broken, the same anime that we liked, and many more!!
+
+I know it is creepy, but I tried to pair up with you as many times as I could kay I wanted to touch your hand HAHAHA.
+
+An hour passed by, and I went downstairs to talk to my friends about what I was feeling. I was struggling with what to do.
+
+Then I went back to the top deck and continued our conversation.
+
+A few minutes later, we talked about our lovelife. I really thought you had a boyfriend na AHAHAHA kaya na-sad ang ferson na ito huhu.
+
+Pero I was wrong.
+
+YESS!!!
+
+It was time to go home na, and I thought I would never chat with you again.
+
+But I was wrong HAHAHA.
+
+I took the courage to chat first kay I really liked you, okay?? Ano mali dun TwT
+
+Then there we have it.
+
+We started talking na.
+
+And yeap, wala man lang maayos na convo for the first week—just reels and g'morning, g'evening.
+
+Days passed by, and we started chatting more. Sending VMs, playing Pass a Question and Truth or Dare, to the point na nag-start na tayo mag-call.
+
+And imagine ba naman, walang tulugan for the first day ng call HAHAHA.
+
+We talked more and more and more.
+
+Until every night na tayo naga-call.
+
+That's where I started to fall for you even more...
+
+Not because of the calls.
+
+Not because of the conversations.
+
+But because you showed me something I had never experienced with other people.
+
+You showed me a kind of connection I never thought I would have again.
+
+Who knew that one day we would confess to each other?
+
+I thought regular crush lang eh, ba't na-pa-amin?
+
+Ambut ra bes, ikaw man gud nanguna.
+
+"Ako na no?"
+
+HAHAHA.
+
+Time passed by, and we got clingy to each other. We called every day until the very moment we fell asleep.
+
+Then there we have it...
+
+I courted you.
+
+The very first woman I ever courted.
+
+Not because I was forced.
+
+Not because trip2x lang.
+
+Not because it was temporary.
+
+But because I was thinking about the future...
+
+"With you."
+
+Alyy, truly I say to you, you are the best gift God has given me.
+
+Words are not enough to describe what I am feeling right now as I'm writing this message.
+
+I thought di ko maka-hilak pero naka-hilak man si beshy nimo 😭😭.
+
+Bibih, always remember that I love you so much.
+
+Always know that you are loved.
+
+You are cared for.
+
+And you are not alone.
+
+You are a choice.
+
+You are everything to me.
+
+Thank you for all the love, care, and prayers you have given to me.
+
+I love you so muchhh, BIBIHH!!!
+
+Happy, happy 19th Birthday, BIBIHHH!!!
+
+Know that this is your special day—a day to be happy, a day to celebrate, and a day to give thanks to God for your 18th year and now your 19th year of life!!
+
+Know that I love you so much, Bibihh, and I will always be there for you.
+
+No matter what happens, Dani will always be there to love you, to support you, to care for you, to pray for you, and to help you whenever you need me.
+
+Alyy, as you face this 19th year of your life, I know there will be a lot of difficulties, problems, and bad things that may come into your life.
+
+But even though maabot man tong mga butang nga 'to, always know that you are not alone.
+
+God will always be there for you to protect you.
+
+There's your family to support you.
+
+And there's me, who will always pray for you and support you.
+
+I know it will be hard sometimes, but know that Dani will always be there.
+
+Please keep these verses written in your heart:
+
+Jeremiah 29:11:
+
+"For I know the plans I have for you," declares the Lord, "plans to prosper you and not to harm you, plans to give you hope and a future."
+
+God has a plan for your life, and His plan is much greater.
+
+John 14:27:
+
+"Peace I leave with you; My peace I give you. I do not give to you as the world gives. Let not your heart be troubled, neither let it be afraid."
+
+May God bring you peace in times of trouble, and may He calm your heart.
+
+He knows you, and He knows your heart.
+
+He knows you are broken and that you are scarred from the things that happened in the past.
+
+Let it go and pray about it. Only then can God move in your life and bring you peace.
+
+James 1:19-20:
+
+"19 My dear brothers and sisters, take note of this: Everyone should be quick to listen, slow to speak and slow to become angry, 20 because human anger does not produce the righteousness that God desires."
+
+Take note of this, love:
+
+Do not be quick to anger.
+
+Be patient.
+
+Listen.
+
+And always remember to let God guide your heart.
+
+I pray that God will always be with you in all times—to protect you, to guide you, and to give you knowledge and wisdom.
+
+I love you always, Bibih.
+
+And I LOVEEE YOOUUU, my Alyy.
+
+My best friend.
+
+My crush.
+
+My girlfriend.
+
+My wife.
+
+My goat.
+
+MY HAMSTER.
+
+My dragon.
+
+My 3000.
+
+And of course...
+
+The love of my life.
+
+I LOVEEE YOUU SO MUCHH, BIBIHHH.
+
+MWAHHH!!! ❤️
+
+Happy 19th Birthday, My Love.
+
+I love you.`,
+  finalPhoto: 'photo1.png'
+});
 new Image().src=CFG.finalPhoto;
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'@keyframes rise{0%{transform:translateY(0);opacity:0}12%{opacity:1}100%{transform:translateY(-120vh);opacity:.85}}#ts{position:fixed;inset:0;z-index:75;background:radial-gradient(#1a2038,#101525);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;opacity:0;transition:opacity 1.5s;overflow:hidden}#ts.on{opacity:1}#ts .lt{position:absolute;bottom:-60px;font-size:30px;animation:rise linear infinite}#tt{position:relative;z-index:2;white-space:pre-line;line-height:1.9;letter-spacing:.12em;font-size:clamp(16px,2.8vw,26px);color:var(--cream);max-width:min(680px,90vw);transition:opacity 1s}#tt.letter{font-size:clamp(15px,2.2vw,20px);letter-spacing:.04em;max-height:62vh;overflow-y:auto;text-align:left;user-select:text}#tt img{width:110px;margin:4px;border-radius:4px}'}));
 function trueSong(){if(!AU.c)return;const seq=[...PHR.chef,...PHR.keeper,...PHR.master,...PHR.fort,...S.mel.map(f=>12*Math.log2(f/220))];
@@ -499,7 +723,7 @@ cx.globalAlpha=1;
 if(!S.gate){rr(1130,598,140,12,2,C.wood);for(let x=1140;x<1270;x+=16)rr(x,588,5,28,1,'#9b7a63')}else{rr(1126,588,6,28,1,C.wood);rr(1268,588,6,28,1,C.wood)}
 rr(1130,402,140,20,3,S.door?C.gold:'#D9C6B3');if(S.door)glow(1200,412,90,.5);else{cx.font='14px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText('🔒',1200,412)}
 const L=[];for(const t of TR)if(inv(t.x,t.y))L.push(t);for(const o of OB)if(vis(o)&&inv(o.x,o.y)&&!(o.a==='gate'||o.a==='door'))L.push(o);L.push(p);
-const ky=o=>o.k||(o===p||o.tr?o.y:o.y+(o.c?o.h/2:8));L.sort((a,b)=>ky(a)-ky(b));
+const ky=o=>o.srt||(o===p||o.tr?o.y:o.y+(o.c?o.h/2:8));L.sort((a,b)=>ky(a)-ky(b));
 for(const o of L){if(o.tr){cx.globalAlpha=ZA(zn(o.x,o.y));drawTree(o);cx.globalAlpha=1}else if(o===p)ch(p.x,p.y,OUT[S.fit||0][1],curZ==='future'?lc(OUT[S.fit||0][2],'#d8d6e0',Math.max(0,Math.min(1,(200-p.y)/1400))):OUT[S.fit||0][2],p.w,p.dir,sit);else obj(o)}
 for(const [x,y] of LP){cx.globalAlpha=ZA(zn(x,y));if(inv(x,y))glow(x,y,70,.22+Math.sin(T*7+x)*.04)}cx.globalAlpha=1;
 if(mode==='rebuild')return;
@@ -524,4 +748,90 @@ hud();
 $('start').onclick=async()=>{AU.init();$('title').classList.add('off');await sleep(1300);const hp=$('help');hp.textContent=TOUCH?'JOYSTICK — MOVE\nBUTTON — INTERACT\n🗺 (TOP LEFT) — MAP\n📜 — MISSIONS + SIDE QUESTS':'WASD / ARROW KEYS — MOVE\nE — INTERACT\nM — MAP\nJ — MISSIONS\nQ — SIDE QUESTS\nP — PHOTO · G — GALLERY · O — SETTINGS';hp.classList.add('on');await sleep(3400);hp.classList.remove('on');await sleep(900);
 if(S.done){mode='end';results();return}
 await fade(1,700);mode='play';nohud(0);await fade(0,1800)};
-requestAnimationFrame(frame);
+requestAnimationFrame(frame);/* ================= CHAPTER 2: THE WORLD WE BUILD TOGETHER (append at END of file) ================= */
+const HK='wwhly_house_v1',CH={on:0,b:0,cat:'F',g:null,items:[],done:0,n:0,ip:0,unl:0,pt:{st:'sit',then:'sit',tx:0,ty:0,wt:2}};
+// --- house zones (x 4000-5300, y 1000-1800), walls with door gaps, keep-out doorways
+Z.push(['h_liv',4000,1000,500,400,'#8B6856','LIVING ROOM',0],['h_kit',4500,1000,400,400,'#D9C6B3','KITCHEN',0],['h_bed',4900,1000,400,400,'#5a4a5c','BEDROOM',0],['h_gar',4000,1400,800,400,'#7F967B','GARDEN',.05],['h_pet',4800,1400,500,400,'#6f8a6b','PET AREA',.05]);
+Object.assign(MIX,{h_liv:[.05,0,1200],h_kit:[.05,0,1400],h_bed:[.02,0,1000],h_gar:[.04,.02,1200],h_pet:[.04,.02,1200]});
+[[4494,1000,12,170],[4494,1250,12,150],[4894,1000,12,170],[4894,1250,12,150],[4000,1394,200,12],[4290,1394,690,12],[5070,1394,230,12]].forEach(a=>R(a[0],a[1],a[2],a[3],WL));
+const DK=[[4478,1160,44,100],[4878,1160,44,100],[4200,1340,90,100],[4980,1340,90,100]];
+DECO.h_liv=DECO.h_kit=DECO.h_bed=(x,y,w,h)=>{cx.fillStyle='rgba(0,0,0,.09)';for(let j=0;j<h;j+=22)cx.fillRect(x,y+j,w,1);glow(x+w/2,y+h/2,230,.16,'246,205,150')};
+DECO.h_gar=DECO.h_pet=(x,y,w,h)=>patch(x,y,w,h,'#536957',50);
+// --- catalog: id:[emoji,name,category,size]
+const CN={F:'🛋️ FURNITURE',D:'✨ DECOR',G:'🌷 GARDEN',P:'🐕 PET'};
+const CD={couch:['🛋️','Couch','F',64],chair:['🪑','Chair','F',30],bed:['🛏️','Bed','F',70],tv:['📺','TV','F',36],cab:['🗄️','Cabinet','F',36],table:['🍽️','Table','F',44],fridge:['🧊','Fridge','F',40],
+plant:['🪴','Plant','D',26],photo:['🖼️','Photo','D',24],plush:['🧸','Plushie','D',22],lamp:['💡','Lamp','D',22],rug:['🟫','Rug','D',60],
+flower:['🌷','Flowers','G',20],tree:['🌳','Tree','G',44],bush:['🌿','Bush','G',26],bench:['🪑','Bench','G',34],glight:['🏮','Lights','G',22],fount:['⛲','Fountain','G',44],fence:['🚧','Fence','G',30],
+pbed:['🧺','Pet bed','P',30],bowl:['🥣','Food bowl','P',20],water:['💧','Water','P',20],toy:['🎾','Toy','P',18],phouse:['🏠','Pet house','P',44]};
+// only these have dialogue; everything else just exists
+const SP2={couch:'You always take this side.',fridge:()=>['🧊 OPEN FRIDGE','[HER FAVORITE DRINK]\n'+CFG.favDrink+'\n\nLOW STOCK\nSomeone keeps drinking these.'],bed:['Our future bedroom.','This side is yours.','You always somehow steal the blanket anyway.'],photo:'This one belongs here.',plush:['You said you didn\'t need another one.','You were lying.'],table:'Imagine all the ordinary nights we\'ll have here.'};
+ACT.c2s=o=>{const t=SP2[o.ty];say(typeof t==='function'?t():t)};
+// placed items ARE regular OB objects, so near()/interact()/obj()/collisions/y-sorting all keep working
+const c2mk=(t,x,y,r)=>{const d=CD[t],f=d[2]==='F';return{id:'c2_'+CH.n++,ty:t,x,y,r:r|0,e:d[0],z:d[3],w:f?d[3]*.8:d[3],h:f?d[3]*.45:d[3],s:f?1:0,dec:!SP2[t],a:SP2[t]?'c2s':0,srt:t==='rug'?1:0}};
+const pet2={id:'c2pet',x:4950,y:1600,e:'🐕',z:20,w:28,h:28,l:[CFG.petName+' has decided this is the best house ever.','No notes.']};
+function c2save(){try{localStorage.setItem(HK,JSON.stringify({on:CH.unl,done:CH.done,items:CH.items.map(o=>[o.ty,Math.round(o.x),Math.round(o.y),o.r])}))}catch(e){}}
+try{const j=JSON.parse(localStorage.getItem(HK)||'null');if(j){CH.done=j.done||0;CH.unl=j.on||0;(j.items||[]).forEach(a=>{if(CD[a[0]]){const o=c2mk(a[0],a[1],a[2],a[3]);CH.items.push(o);OB.push(o)}})}}catch(e){}
+// --- placement rules
+function c2ok(g){const d=CD[g.t],z=zoneAt(g.x,g.y);if(!z)return 0;if(!{F:'h_liv h_kit h_bed',D:'h_liv h_kit h_bed',G:'h_gar',P:'h_pet'}[d[2]].includes(z[0]))return 0;
+const q=d[3]*.3,x0=g.x-q,x1=g.x+q,y0=g.y-q,y1=g.y+q;if(x0<z[1]||x1>z[1]+z[3]||y0<z[2]||y1>z[2]+z[4])return 0;
+const X=r=>x0<r.x+r.w&&x1>r.x&&y0<r.y+r.h&&y1>r.y;if(SO.some(X)||DK.some(a=>X({x:a[0],y:a[1],w:a[2],h:a[3]})))return 0;
+if(g.t!=='rug'&&CH.items.some(o=>o.ty!=='rug'&&Math.hypot(o.x-g.x,o.y-g.y)<Math.min(o.z,d[3])*.6))return 0;
+if(d[2]==='F'&&Math.hypot(p.x-g.x,p.y-g.y)<d[3]*.5+8)return 0;return 1}
+// --- build mode UI (DOM built once; canvas draws the ghost)
+document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'#bd{display:none;position:fixed;z-index:38;left:50%;bottom:10px;transform:translateX(-50%);max-width:96vw;background:rgba(16,21,37,.93);border:1px solid rgba(231,201,139,.5);border-radius:10px;padding:8px;text-align:center;color:var(--cream)}#bd.on{display:block}body.touch #bd{bottom:auto;top:8px}#bd button{margin:2px;padding:6px 10px;font-size:12px;letter-spacing:.06em}#bd .it{font-size:22px;padding:4px 8px}#bt{font-size:11px;opacity:.85;margin:4px;min-height:14px}#bb{position:fixed;z-index:36;top:58px;right:14px;padding:8px 14px;font-size:12px;display:none}body.nohud #bb,body.nohud #bd{display:none!important}'}));
+document.body.appendChild(Object.assign(document.createElement('div'),{id:'bd'}));
+document.body.appendChild(Object.assign(document.createElement('button'),{id:'bb',textContent:'🔨 BUILD',onclick:()=>c2bm(!CH.b)}));
+cv.style.touchAction='none';
+function c2bdr(){const g=CH.g;$('bd').innerHTML='<div>'+Object.keys(CN).map(k=>`<button data-c="${k}" style="${CH.cat==k?'border-color:var(--gold)':''}">${CN[k]}</button>`).join('')+'</div><div style="max-height:110px;overflow-y:auto">'+Object.keys(CD).filter(t=>CD[t][2]==CH.cat).map(t=>`<button class="it" data-t="${t}" title="${CD[t][1]}">${CD[t][0]}</button>`).join('')+'</div><div id="bt">'+(g?'':(TOUCH?'Pick an item, or tap a placed one to move it.':'Pick an item, or click a placed one to move it.'))+'</div><div>'+(g?'<button data-a="place">PLACE</button><button data-a="rot">ROTATE</button><button data-a="del">DELETE</button><button data-a="cancel">CANCEL</button>':'')+'<button data-a="done">DONE ♡</button><button data-a="close">CLOSE</button></div>'}
+$('bd').onclick=e=>{const b=e.target.closest('button');if(!b)return;const D=b.dataset;
+if(D.c){c2cancel(1);CH.cat=D.c;c2bdr()}else if(D.t){c2cancel(1);CH.g={t:D.t,x:sn(p.x),y:sn(p.y-36),r:0,src:null};c2bdr()}
+else if(D.a=='place')c2place();else if(D.a=='rot'){if(CH.g)CH.g.r^=1}else if(D.a=='del')c2del();else if(D.a=='cancel')c2cancel();else if(D.a=='close')c2bm(0);else if(D.a=='done'){c2bm(0);c2happy()}};
+const sn=v=>Math.round(v/4)*4,wpos=e=>[cam.x+(e.clientX-innerWidth/2)/SC,cam.y+(e.clientY-innerHeight/2)/SC];
+function c2bm(on){CH.b=on?1:0;if(!on)c2cancel(1);$('bd').classList.toggle('on',!!on);$('bb').textContent=on?'✕ CLOSE':'🔨 BUILD';if(on)c2bdr()}
+function c2cancel(q){const g=CH.g;if(g&&g.src){CH.items.push(g.src);OB.push(g.src)}CH.g=null;if(!q)c2bdr()}
+function c2del(){if(!CH.g)return;CH.g=null;c2save();toast('Removed');c2bdr()}  // a lifted item is already out of the lists; discarding = deleting
+function c2place(){const g=CH.g;if(!g)return;if(!c2ok(g)){toast('Not there.\nSomething is in the way.');AU.tone(150,.2,.05,'sawtooth');return}
+const o=c2mk(g.t,g.x,g.y,g.r);CH.items.push(o);OB.push(o);CH.g=g.src?null:{t:g.t,x:g.x,y:g.y,r:g.r,src:null};AU.chime();c2save();c2bdr()}
+function c2lift(o){CH.items.splice(CH.items.indexOf(o),1);OB.splice(OB.indexOf(o),1);CH.g={t:o.ty,x:o.x,y:o.y,r:o.r,src:o};c2bdr()}
+cv.addEventListener('pointerdown',e=>{if(!CH.b||mode!=='play'||pOpen||dOpen)return;const[x,y]=wpos(e);
+if(CH.g){CH.g.x=sn(x);CH.g.y=sn(y);if(e.pointerType==='mouse')c2place();return}
+let b=null,bd=26;for(const o of CH.items){const d=Math.hypot(o.x-x,o.y-y);if(d<bd){bd=d;b=o}}if(b)c2lift(b)});
+cv.addEventListener('pointermove',e=>{if(CH.b&&CH.g&&(e.pointerType==='mouse'||e.buttons)){const[x,y]=wpos(e);CH.g.x=sn(x);CH.g.y=sn(y)}});
+addEventListener('keydown',e=>{if(!CH.on||e.target.tagName==='INPUT')return;
+if(e.code==='KeyB'&&!e.repeat&&mode==='play'&&!pOpen&&!dOpen)c2bm(!CH.b);if(!CH.b)return;
+if(e.code==='KeyR'&&CH.g)CH.g.r^=1;if(e.code==='Delete'||e.code==='Backspace')c2del();if(e.code==='Enter'&&CH.g)c2place();if(e.code==='Escape'){CH.g?c2cancel():c2bm(0)}});
+const c2sp=e=>{if(e.code.startsWith('Shift'))CFG.speed=e.type==='keydown'&&CH.on?180:118};addEventListener('keydown',c2sp);addEventListener('keyup',c2sp);
+// --- ghost preview, mirror-flip for placed items, pet behaviour (wrap existing render / obj / upd; originals untouched)
+function c2draw(){const g=CH.g;if(!CH.b||!g||mode!=='play')return;const d=CD[g.t],v=c2ok(g),w=innerWidth,h=innerHeight,q=d[3]*.3,e=$('bt');
+if(e){const s=d[1]+(v?(TOUCH?' · tap PLACE':' · click to place · R flips · Del removes'):' · blocked');if(e.textContent!==s)e.textContent=s}
+cx.setTransform(DPR,0,0,DPR,0,0);cx.save();cx.translate(w/2,h/2);cx.scale(SC,SC);cx.translate(-cam.x,-cam.y);
+cx.fillStyle=v?'rgba(127,150,123,.5)':'rgba(184,111,124,.55)';cx.fillRect(g.x-q,g.y-q,q*2,q*2);cx.strokeStyle=C.gold;cx.lineWidth=1;cx.strokeRect(g.x-q,g.y-q,q*2,q*2);
+cx.globalAlpha=.75;cx.font=d[3]+'px serif';cx.textAlign='center';cx.textBaseline='middle';if(g.r&1){cx.translate(g.x,0);cx.scale(-1,1);cx.fillText(d[0],0,g.y)}else cx.fillText(d[0],g.x,g.y);cx.restore()}
+const _rd=render;render=function(){_rd();c2draw()};
+const _ob=obj;obj=function(o){if(o.r&1){cx.save();cx.translate(o.x,0);cx.scale(-1,1);cx.translate(-o.x,0);_ob(o);cx.restore()}else _ob(o)};
+function c2pet(dt){const q=CH.pt,P=pet2;q.wt-=dt;
+if(q.st==='go'){const dx=q.tx-P.x,dy=q.ty-P.y,d=Math.hypot(dx,dy);if(d>3){P.x+=dx/d*32*dt;P.y+=dy/d*32*dt}else{q.st=q.then;q.wt=q.then==='sleep'?7+Math.random()*6:2+Math.random()*3;P.e=q.then==='sleep'?'🐕💤':'🐕'}}
+else if(q.wt<=0){q.st='go';q.then='sit';P.e='🐕';const r=Math.random(),c=a=>a[Math.floor(Math.random()*a.length)],b=CH.items.filter(o=>o.ty==='pbed'),f=CH.items.filter(o=>o.ty==='bowl');
+if(r<.35&&b.length){const o=c(b);q.tx=o.x;q.ty=o.y;q.then='sleep'}else if(r<.55&&f.length){const o=c(f);q.tx=o.x-14;q.ty=o.y;q.then='sit'}else{q.tx=4830+Math.random()*440;q.ty=1440+Math.random()*320}}}
+const _up=upd;upd=function(dt){_up(dt);if(CH.on){$('bb').style.display=mode==='play'&&!pOpen&&!dOpen?'block':'none';if(mode==='play')c2pet(dt)}};
+// --- enter / transition from the existing ending
+function c2enter(){unpan();CH.on=1;nohud(0);if(!CH.ip){CH.ip=1;OB.push(pet2)}p.x=4250;p.y=1310;p.dir=1;p.w=0;cam.x=p.x;cam.y=p.y;pet.fol=0;sit=0;curZ='';mode='play';hud()}
+async function c2start(){unpan();mode='end';$('fade').style.opacity=0;nohud(1);AU.mix(0,0);await sleep(1500);
+for(const[t,ms]of[['But...',2000],['There\'s one thing left.',2800],['I imagined the future.',2800],['Now I want you to help me build it.',3400],['CHAPTER 2',2400],['THE WORLD WE BUILD TOGETHER',3400],['You explored the world I imagined.',2600],['Now you get to decide what it becomes.',3400]])await line(t,ms);
+CH.unl=1;c2save();c2enter();if(!CH.items.length)say(['Our house. Empty, for now.','Press B (or tap 🔨 BUILD) to build.\nEverything goes exactly where you put it.'])}
+{const _fp=finalPhoto;finalPhoto=async function(){await _fp();await sleep(6000);const pn=$('panel');if(mode==='end'&&pn.classList.contains('on')&&!$('c2go')){pn.insertAdjacentHTML('beforeend','<button id="c2go" style="margin-top:16px">CONTINUE</button>');$('c2go').onclick=c2start}}}
+// --- "are you happy?" + walkthrough of the house she built + final message
+function c2happy(){pan('<h2>ARE YOU HAPPY WITH OUR HOME?</h2><div><button id="hy">YES ♡</button> &nbsp; <button id="hn">NOT YET</button></div>');$('hn').onclick=()=>{unpan();c2bm(1)};$('hy').onclick=c2tour}
+const c2glide=(x,y,ms)=>new Promise(r=>{const x0=p.x,y0=p.y,t0=performance.now();p.w=1;if(x!=x0)p.dir=x>x0?1:-1;const f=t=>{let k=Math.min(1,(t-t0)/ms);k=k*k*(3-2*k);p.x=x0+(x-x0)*k;p.y=y0+(y-y0)*k;cam.x=p.x;cam.y=p.y;if(k<1)requestAnimationFrame(f);else{p.w=0;r()}};requestAnimationFrame(f)});
+async function c2tour(){c2bm(0);unpan();mode='cine';nohud(1);await fade(1,900);
+const st=[[4250,1330,'THE ENTRANCE'],[4250,1190,'THE LIVING ROOM','h_liv'],[4700,1190,'THE KITCHEN','h_kit'],[5100,1190,'THE BEDROOM','h_bed'],[5025,1330],[5025,1480],[5050,1620,'THE PET AREA'],[4400,1620,'THE GARDEN']];
+p.x=st[0][0];p.y=st[0][1];cam.x=p.x;cam.y=p.y;await fade(0,900);
+for(const s of st){await c2glide(s[0],s[1],3000);if(s[2])await line(s[2],1300);
+if(s[3]){const ph=CH.items.filter(o=>o.ty==='photo'&&zn(o.x,o.y)===s[3]).slice(0,2);for(const o of ph){await c2glide(o.x,o.y+20,1600);await line('This one belongs here.',1400)}if(ph.length)await c2glide(s[0],s[1],1200)}}
+await fade(1,2400);mode='end';$('fade').style.opacity=0;await sleep(1200);
+for(const[t,ms]of[['You didn\'t just explore my future.',2800],['You helped build it.',3200],['Maybe that\'s what I wanted all along.',3000],['Not a perfect house.',2400],['Just a place that feels like us.',3200],['Thank you for building it with me. ♡',4000]])await line(t,ms);
+CH.done=1;c2save();pan('<h1>♡</h1><button id="bk">BACK HOME</button>');$('bk').onclick=async()=>{unpan();await fade(1,600);c2enter();await fade(0,1000);c2bm(1)}}
+// --- title-screen shortcut once Chapter 2 has been unlocked on this device
+if(CH.unl){const b=document.createElement('button');b.textContent='CHAPTER 2';b.style.cssText='position:fixed;z-index:31;left:50%;bottom:11vh;transform:translateX(-50%);padding:8px 22px;font-size:12px';
+b.onclick=async()=>{AU.init();[...document.querySelectorAll('button')].filter(x=>x.textContent==='RESUME'||x===b).forEach(x=>x.remove());$('title').classList.add('off');await sleep(1300);c2enter();c2bm(1)};
+document.body.appendChild(b);$('start').addEventListener('click',()=>b.remove())}
